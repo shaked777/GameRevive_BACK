@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
+    'payments.apps.PaymentsConfig',
     'rest_framework',
     "corsheaders",
 ]
@@ -177,6 +178,10 @@ STATICFIELS_DIRS = [
 ]
 
 MEDIA_ROOT = 'static/images'
+
+SITE_URL = 'http://localhost:3000'
+
+STRIPE_SECRET_KEY = 'sk_test_51Mg8seDnSZvkPSvDggZ8ZvujRatYjOCSPUTuxNYJ2rLxrDSim20ffai7nGe0qmNhg4x4LMzJI4UMn1emg2ERVxA400LxpWTuIu'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
