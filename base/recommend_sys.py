@@ -74,7 +74,3 @@ def give_recommendations(index,print_recommendation = False):
 
   give_recommendations(game_index,True)
 
-
-
-if __name__ == "__main__":
-    main()
