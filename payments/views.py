@@ -11,8 +11,6 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-
-
 class StripeCheckoutView(APIView):
 
     def post(self, request):
@@ -26,8 +24,9 @@ class StripeCheckoutView(APIView):
                     },
                 ],
                 mode='payment',
-                success_url=settings.SITE_URL + '/cart/?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=settings.SITE_URL  + '/cart/?canceled=true',
+                success_url=settings.SITE_URL + \
+                '/cart/?success=true&session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=settings.SITE_URL + '/cart/?canceled=true',
             )
 
             return redirect(checkout_session.url)
@@ -36,5 +35,3 @@ class StripeCheckoutView(APIView):
                 {'error': 'somthing went worng'},
                 status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
-        

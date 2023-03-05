@@ -4,22 +4,16 @@ from sklearn.decomposition import PCA
 import numpy as np
 import pandas as pd
 
-
-
-
-
-  # The data
-data = pd.read_csv('/Users/shakedgabay/Desktop/python/python_course/reccomandition_system/video_games.csv')
+# The data
+data = pd.read_csv(
+    '/Users/shakedgabay/Desktop/python/python_course/reccomandition_system/video_games.csv')
 data = data.rename(columns={'plot': 'description'})
 print(data.columns)
 print(type(data))
 X = np.array(data.description)
 
-
 # View the data
-data = data[['name','description','rating', 'url']].astype(str)
-a = data.head()
-# display(a)
+data = data[['name', 'description', 'rating', 'url']].astype(str)
 
 # Translate the data to numbers(vectors) BERT
 text_data = X
@@ -35,28 +29,16 @@ pca.fit(X)
 pca_data = pd.DataFrame(pca.transform(X))
 b = pca_data.head()
 
-
-  # Give reccomendatio by the cosine simalrity of the vectors
+# Give reccomendatio by the cosine simalrity of the vectors
 cos_sim_data = pd.DataFrame(cosine_similarity(X))
-def give_recommendations(index,print_recommendation = False):
-  index_recomm =cos_sim_data.loc[index].sort_values(ascending=False).index.tolist()[1:5]
-  games_recomm =  data['name'].loc[index_recomm].values
-  result = {'Games':games_recomm,'Index':index_recomm}
-  if print_recommendation==True:
-    print('The game choosen is: %s \n'%(data['name'].loc[index]))
-    k=1
-    for game in games_recomm:
-      print('The number %i recommended game is: %s \n'%(k,game))
-      locate = data.loc[data['name']==str(game)].index[0]
-      print('The rating of that game is: \n'+data['rating'].loc[locate])
-      print("\n")
-      print('Check it out: \n'+data['url'].loc[locate])
-      print("\n")
-      print('%s\n'%(data['description'].loc[(int(data.loc[data['name']==str(game)].index[0]))]))
-      k=k+1
-      print("--------------------------------------------------")
 
-  return result
+def give_recommendations(index):
+    index_recomm = cos_sim_data.loc[index].sort_values(
+        ascending=False).index.tolist()[1:5]
+    games_recomm = data['name'].loc[index_recomm].values
+    result = {'Games': games_recomm, 'Index': index_recomm}
+
+    return result
 
 
 # 0	Spider-Man
@@ -72,5 +54,4 @@ def give_recommendations(index,print_recommendation = False):
 # 10	Ghost of Tsushima
 # Give recommendations the index above (full list at csv file)
 
-  give_recommendations(game_index,True)
-
+    

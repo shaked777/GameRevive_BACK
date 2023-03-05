@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.hashers import make_password
-
+from django.contrib.auth.models import User
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -9,10 +9,8 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from django.contrib.auth.models import User
+from ..serializer import UserSerializer, UserSerializerWithToken
 
-
-from ..serializer import ProductSerializer, UserSerializer, UserSerializerWithToken
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
@@ -24,24 +22,26 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
             data[k] = v
 
         return data
-    
+
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
-@api_view (['POST'])
-def registerUser (request):
+
+@api_view(['POST'])
+def registerUser(request):
     data = request.data
     try:
         user = User.objects.create(
-        first_name=data['name'],
-        username=data['email'],
-        email=data['email'],
-        password=make_password(data['password'])
+            first_name=data['name'],
+            username=data['email'],
+            email=data['email'],
+            password=make_password(data['password'])
         )
         serializer = UserSerializerWithToken(user, many=False)
         return Response(serializer. data)
     except:
-        message = {"detail":"user already exits"}
+        message = {"detail": "user already exits"}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -63,6 +63,7 @@ def update_user_profile(request):
 
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_user_profile(request):
@@ -71,9 +72,10 @@ def get_user_profile(request):
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
-def getUsers (request):
+def getUsers(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
