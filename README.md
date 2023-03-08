@@ -30,8 +30,8 @@ To run this application on your local machine, you will need to have Python, Nod
 7. Set up a `.env` file with your Stripe API key and other environment variables
 8. Install the frontend dependencies using `npm install`
 9. Start the backend server using `python manage.py runserver`
-10. Start the frontend server using `npm start`
-- The front is in GameRevive Front repo.
+10. The FRONT is inside this project.
+
 
 ## AI-Based Recommendation System
 Our online store uses an AI-based recommendation system to provide personalized game recommendations to users. This recommendation system is powered by state-of-the-art machine learning algorithms that analyze user behavior and preferences to suggest games that are likely to be of interest.
@@ -39,8 +39,6 @@ Our online store uses an AI-based recommendation system to provide personalized 
 The recommendation system is built using Python and is integrated into the Django backend. The system uses advanced data analysis techniques and machine learning models from the scikit-learn library to learn from user interactions and provide personalized game recommendations in real-time.
 
 
-## Contributing
-We welcome contributions to this project! If you'd like to contribute, please fork the repository and submit a pull request with your changes.
 
 
 
