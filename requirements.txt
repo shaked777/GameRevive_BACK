@@ -37,7 +37,8 @@ sqlparse==0.4.3
 stripe==5.2.0
 threadpoolctl==3.1.0
 tokenizers==0.13.2
-
+torch==1.13.1
+torchvision==0.14.1
 tqdm==4.64.1
 transformers==4.26.1
 typing_extensions==4.5.0
