@@ -3,10 +3,11 @@ from sentence_transformers import SentenceTransformer
 from sklearn.decomposition import PCA
 import numpy as np
 import pandas as pd
+import os
 
 # The data
-data = pd.read_csv(
-    '/Users/shakedgabay/Desktop/python/python_course/reccomandition_system/video_games.csv')
+cwd = os.getcwd()
+data = pd.read_csv(f"{cwd}/video_games.csv")
 data = data.rename(columns={'plot': 'description'})
 print(data.columns)
 print(type(data))
