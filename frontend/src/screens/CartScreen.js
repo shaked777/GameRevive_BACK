@@ -124,7 +124,7 @@ function CartScreen() {
 
         <Col md={4}>
           <form
-            action="http://localhost:8000/api/stripe/create-checkout-session"
+            action="/api/stripe/create-checkout-session"
             method="POST"
           >
             <Card>
