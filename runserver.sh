@@ -1,4 +1,5 @@
-
+NUM_WORKERS=3
+TIMEOUT=120
 
 python manage.py migrate
 
