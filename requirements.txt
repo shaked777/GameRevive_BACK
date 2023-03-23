@@ -1,3 +1,6 @@
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.9.0
+torchvision==0.10.0
 asgiref==3.6.0
 certifi==2022.12.7
 charset-normalizer==3.1.0
@@ -36,8 +39,6 @@ sqlparse==0.4.3
 stripe==5.2.0
 threadpoolctl==3.1.0
 tokenizers==0.13.2
-torch==1.9.0
-torchvision==0.10.0
 tqdm==4.65.0
 transformers==4.27.2
 typing_extensions==4.5.0
