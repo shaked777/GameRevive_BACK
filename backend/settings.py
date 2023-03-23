@@ -192,7 +192,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-SITE_URL = 'http://localhost:8000'
+SITE_URL = 'https://orca-app-vh8nl.ondigitalocean.app/'
 
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
