@@ -24,9 +24,9 @@ class StripeCheckoutView(APIView):
                     },
                 ],
                 mode='payment',
-                success_url=settings.SITE_URL + \
-                '/#/cart/?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=settings.SITE_URL + '/#/cart/?canceled=true',
+                success_url=settings.SITE_URL +
+                '#/cart/?success=true&session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=settings.SITE_URL + '#/cart/?canceled=true',
             )
 
             return redirect(checkout_session.url)
