@@ -10,7 +10,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         cwd = os.getcwd()
         # Process data with Pandas
-        data = pd.read_csv(f"{cwd}/video_games.csv")
+        data = pd.read_csv(f"{cwd}/video_games_100.csv")
         data = data.rename(
             columns={'plot': 'description', 'Unnamed: 0': 'g_index'})
 

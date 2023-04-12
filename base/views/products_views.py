@@ -26,9 +26,10 @@ def getProduct(request, pk):
 
 @api_view(['GET'])
 def getRecommendProduct(request, pk):
-    # recomend = give_recommendations(int(pk))
     recomend = main(int(pk))
     index_list = recomend['Index']
+    print(pk)
+    print(index_list)
 
     products = Product.objects.filter(_id__in=index_list)
 

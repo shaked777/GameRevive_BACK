@@ -9,7 +9,7 @@ import os
 def main(index):
     # The data
     cwd = os.getcwd()
-    data = pd.read_csv(f"{cwd}/video_games.csv")
+    data = pd.read_csv(f"{cwd}/video_games_100.csv")
     data = data.rename(columns={'plot': 'description'})
     print(data.columns)
     print(type(data))
@@ -43,7 +43,7 @@ def main(index):
 
         return result
     
-    return give_recommendations(index=0)
+    return give_recommendations(index)
 if __name__ == '__main__':
   main()
 
