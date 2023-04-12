@@ -5,41 +5,47 @@ import numpy as np
 import pandas as pd
 import os
 
-# The data
-cwd = os.getcwd()
-data = pd.read_csv(f"{cwd}/video_games.csv")
-data = data.rename(columns={'plot': 'description'})
-print(data.columns)
-print(type(data))
-X = np.array(data.description)
 
-# View the data
-data = data[['name', 'description', 'rating', 'url']].astype(str)
+def main(index):
+    # The data
+    cwd = os.getcwd()
+    data = pd.read_csv(f"{cwd}/video_games.csv")
+    data = data.rename(columns={'plot': 'description'})
+    print(data.columns)
+    print(type(data))
+    X = np.array(data.description)
 
-# Translate the data to numbers(vectors) BERT
-text_data = X
-model = SentenceTransformer('distilbert-base-nli-mean-tokens')
-embeddings = model.encode(text_data, show_progress_bar=True)
-embed_data = embeddings
+    # View the data
+    data = data[['name', 'description', 'rating', 'url']].astype(str)
 
-# PCA
-X = np.array(embed_data)
-n_comp = 5
-pca = PCA(n_components=n_comp)
-pca.fit(X)
-pca_data = pd.DataFrame(pca.transform(X))
-b = pca_data.head()
+    # Translate the data to numbers(vectors) BERT
+    text_data = X
+    model = SentenceTransformer('distilbert-base-nli-mean-tokens')
+    embeddings = model.encode(text_data, show_progress_bar=True)
+    embed_data = embeddings
 
-# Give reccomendatio by the cosine simalrity of the vectors
-cos_sim_data = pd.DataFrame(cosine_similarity(X))
+    # PCA
+    X = np.array(embed_data)
+    n_comp = 5
+    pca = PCA(n_components=n_comp)
+    pca.fit(X)
+    pca_data = pd.DataFrame(pca.transform(X))
+    b = pca_data.head()
 
-def give_recommendations(index):
-    index_recomm = cos_sim_data.loc[index].sort_values(
-        ascending=False).index.tolist()[1:5]
-    games_recomm = data['name'].loc[index_recomm].values
-    result = {'Games': games_recomm, 'Index': index_recomm}
+    # Give reccomendatio by the cosine simalrity of the vectors
+    cos_sim_data = pd.DataFrame(cosine_similarity(X))
 
-    return result
+    def give_recommendations(index):
+        index_recomm = cos_sim_data.loc[index].sort_values(
+            ascending=False).index.tolist()[1:5]
+        games_recomm = data['name'].loc[index_recomm].values
+        result = {'Games': games_recomm, 'Index': index_recomm}
+
+        return result
+    
+    return give_recommendations(index=0)
+if __name__ == '__main__':
+  main()
 
 
 # 0	Spider-Man

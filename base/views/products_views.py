@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from ..recommend_sys import give_recommendations
+from ..recommend_sys import main
 from ..models import Product
 from ..serializer import ProductSerializer
 
@@ -26,7 +26,8 @@ def getProduct(request, pk):
 
 @api_view(['GET'])
 def getRecommendProduct(request, pk):
-    recomend = give_recommendations(int(pk))
+    # recomend = give_recommendations(int(pk))
+    recomend = main(int(pk))
     index_list = recomend['Index']
 
     products = Product.objects.filter(_id__in=index_list)
