@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "orca-app-vh8nl.ondigitalocean.app"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "orca-app-vh8nl.ondigitalocean.app", 'gamerevive.shop']
 
 
 # Application definition
